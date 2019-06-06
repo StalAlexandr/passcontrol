@@ -1,4 +1,4 @@
-package ru.alexandrstal.resttest.it;
+package ru.maximumdance.passcontrol.it;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,9 +14,9 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@ActiveProfiles("dev")
+@ActiveProfiles("prod")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class MyRestDevTest {
+public class MyRestProdTest {
 
     @Autowired
     private TestRestTemplate testRestTemplate;
@@ -27,6 +27,8 @@ public class MyRestDevTest {
                 testRestTemplate.exchange("/", HttpMethod.GET, null, String.class);
         Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
         String actual = entity.getBody();
-        Assert.assertEquals(actual, "MyServiceDev");
+        Assert.assertEquals(actual, "MyServiceImpl");
     }
 }
+
+

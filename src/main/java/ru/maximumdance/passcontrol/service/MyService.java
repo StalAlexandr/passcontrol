@@ -1,4 +1,4 @@
-package ru.alexandrstal.resttest.service;
+package ru.maximumdance.passcontrol.service;
 
 public interface MyService {
     String getService();
