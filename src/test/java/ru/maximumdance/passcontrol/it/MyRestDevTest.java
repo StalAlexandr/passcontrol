@@ -1,6 +1,7 @@
 package ru.maximumdance.passcontrol.it;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+@Ignore
 @RunWith(SpringRunner.class)
 @ActiveProfiles("dev")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -21,7 +23,7 @@ public class MyRestDevTest {
     @Autowired
     private TestRestTemplate testRestTemplate;
 
-    @Test
+  //  @Test
     public void testFindById() throws Exception {
         ResponseEntity<String> entity =
                 testRestTemplate.exchange("/", HttpMethod.GET, null, String.class);
