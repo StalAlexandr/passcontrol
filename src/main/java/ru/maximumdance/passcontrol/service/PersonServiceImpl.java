@@ -22,13 +22,13 @@ public class PersonServiceImpl implements PersonService {
 
 
     @Override
-    public void insert(Person person) {
-         personDAO.insert(person);
+    public Person insert(Person person) {
+        return personDAO.insert(person);
     }
 
     @Override
-    public void update(Person person) {
-        personDAO.update(person);
+    public Person update(Person person) {
+        return personDAO.update(person);
     }
 
     @Override

@@ -17,26 +17,20 @@ public class PersonController {
     @Autowired
     PersonService personService;
 
-    @PostConstruct
-    public void init(){
-   System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-    }
-
-
     @GetMapping("/")
     public List<Person> root() {
         return personService.getAll();
     }
 
     @PutMapping("/")
-    public void update(@RequestBody Person person){
-         personService.update(person);
+    public Person update(@RequestBody Person person){
+        return personService.update(person);
     }
 
 
     @PostMapping("/")
-    public void insert(@RequestBody Person person){
-        personService.insert(person);
+    public Person insert(@RequestBody Person person){
+        return personService.insert(person);
     }
 
 

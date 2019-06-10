@@ -26,12 +26,16 @@ public class PersonDAOImpl {
         this.entityManager = entityManager;
     }
 
-    public void insert(Person person){
+    public Person insert(Person person){
         entityManager.persist(person);
+        entityManager.flush();
+        return person;
     }
 
-    public void update(Person person){
+    public Person update(Person person){
         entityManager.merge(person);
+        entityManager.flush();
+        return person;
     }
 
     public void delete(Person person){

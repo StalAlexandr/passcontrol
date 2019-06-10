@@ -13,9 +13,9 @@ import java.util.Map;
 
 public interface PersonService {
 
-    void insert(Person person);
+    Person insert(Person person);
 
-    void update(Person person);
+    Person update(Person person);
 
     List<Person> getAll();
 
