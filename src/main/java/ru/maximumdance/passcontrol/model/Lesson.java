@@ -23,6 +23,9 @@ public class Lesson {
     @Column
     Date date;
 
+    @Column
+    String name;
+
     @JsonBackReference
     @ManyToMany(mappedBy = "lessons")
     Set<Pass> passes = new HashSet<>();
