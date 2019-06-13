@@ -17,14 +17,11 @@ public class Lesson {
     Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false,  cascade = CascadeType.MERGE)
-    @JoinColumn(name = "course_id", referencedColumnName = "id")
-    Course course;
+    @JoinColumn(name = "courselevel_id", referencedColumnName = "id")
+    Course courseLevel;
 
     @Column
     Date date;
-
-    @Column
-    String name;
 
     @JsonBackReference
     @ManyToMany(mappedBy = "lessons")
@@ -45,12 +42,12 @@ public class Lesson {
         this.id = id;
     }
 
-    public Course getCourse() {
-        return course;
+    public Course getCourseLevel() {
+        return courseLevel;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setCourseLevel(Course courseLevel) {
+        this.courseLevel = courseLevel;
     }
 
     public Date getDate() {

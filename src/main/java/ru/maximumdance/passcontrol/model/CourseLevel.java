@@ -1,11 +1,12 @@
 package ru.maximumdance.passcontrol.model;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "courses")
-public class Course {
+@Table(name = "courselevels")
+public class CourseLevel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,10 +15,9 @@ public class Course {
     @Column
     String name;
 
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
-            mappedBy = "course")
-    List<CourseLevel> courseLevels = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "course_id", referencedColumnName = "id")
+    Course course;
 
     public Long getId() {
         return id;
@@ -35,11 +35,11 @@ public class Course {
         this.name = name;
     }
 
-    public List<CourseLevel> getCourseLevels() {
-        return courseLevels;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setCourseLevels(List<CourseLevel> courseLevels) {
-        this.courseLevels = courseLevels;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

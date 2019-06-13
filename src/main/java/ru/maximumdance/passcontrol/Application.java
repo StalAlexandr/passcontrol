@@ -18,7 +18,7 @@ public class Application {
 
         PersonService service =context.getBean(PersonService.class);
 
-
+/*
         Person person = new Person();
         person.setLastName("Сталь");
         person.setCardNumber(123);
@@ -43,6 +43,6 @@ public class Application {
 
 
         Integer passId = service.addPass(id, pass);
-
+*/
     }
 }
