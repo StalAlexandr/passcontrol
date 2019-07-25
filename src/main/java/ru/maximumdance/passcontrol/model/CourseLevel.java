@@ -1,5 +1,7 @@
 package ru.maximumdance.passcontrol.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class CourseLevel {
     @Column
     String name;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "course_id", referencedColumnName = "id")
     Course course;
