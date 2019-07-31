@@ -2,6 +2,7 @@ package ru.maximumdance.passcontrol.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.maximumdance.passcontrol.model.Pass;
 import ru.maximumdance.passcontrol.model.Person;
 import ru.maximumdance.passcontrol.service.PersonService;
 
@@ -50,5 +51,11 @@ public class PersonController {
     public  List<Person> findByName(@PathVariable String name){
         return personService.findByNameLike(name);
     }
+
+    @PostMapping("/{id}/pass")
+    public Person addPass(@PathVariable Integer id, @RequestBody Pass pass){
+        return personService.addPass(id, pass);
+    }
+
 
 }

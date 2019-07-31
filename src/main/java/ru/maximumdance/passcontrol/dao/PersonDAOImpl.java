@@ -72,12 +72,13 @@ public class PersonDAOImpl {
 
 
 
-    public Integer addPass(Integer id, Pass pass){
+    public Person addPass(Integer id, Pass pass){
         Person person = findById(id);
         person.addPass(pass);
         entityManager.persist(pass);
         entityManager.flush();
-        return pass.getId();
+        person = findById(id);
+        return person;
     }
 
     public Person find(Map<String,String> params) {
@@ -110,12 +111,14 @@ public class PersonDAOImpl {
         return typed.getResultList();
     }
 
-    public Long addLesson(Integer id, Lesson lesson) {
+    public Person addLesson(Integer id, Lesson lesson) {
+
 
         Pass pass = findPassById(id);
         pass.addLesson(lesson);
+
         entityManager.persist(pass);
         entityManager.flush();
-        return lesson.getId();
+        return pass.getPerson();
     }
 }

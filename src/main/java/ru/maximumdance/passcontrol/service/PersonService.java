@@ -21,9 +21,9 @@ public interface PersonService {
 
     Person findById(Integer id);
 
-    Integer addPass(Integer id, Pass pass);
+    Person addPass(Integer id, Pass pass);
 
-    Long addLesson(Integer id, Lesson lesson);
+    Person addLesson(Integer id, Lesson lesson);
 
     Person find(Map<String,String> params);
 

@@ -43,13 +43,13 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Integer addPass(Integer id, Pass pass) {
+    public Person addPass(Integer id, Pass pass) {
         return personDAO.addPass(id,pass);
     }
 
 
     @Override
-    public Long  addLesson(Integer id, Lesson lesson) {
+    public Person  addLesson(Integer id, Lesson lesson) {
         return personDAO.addLesson(id,lesson);
     }
 
