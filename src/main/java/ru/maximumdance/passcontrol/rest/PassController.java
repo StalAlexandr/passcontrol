@@ -14,7 +14,7 @@ public class PassController {
     @Autowired
     PersonService personService;
 
-    @PostMapping("/{id}/pass")
+    @PostMapping("/{id}/lesson")
     public Person addLesson(@PathVariable Integer id, @RequestBody Lesson lesson){
         return personService.addLesson(id, lesson);
     }

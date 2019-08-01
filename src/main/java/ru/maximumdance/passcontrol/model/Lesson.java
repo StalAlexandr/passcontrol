@@ -1,12 +1,15 @@
 package ru.maximumdance.passcontrol.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 import javax.persistence.*;
 
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 
 @Entity
 @Table(name = "lessons")
@@ -16,24 +19,17 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false,  cascade = CascadeType.MERGE)
     @JoinColumn(name = "courselevel_id", referencedColumnName = "id")
-    Course courseLevel;
+    CourseLevel courselevel;
 
     @Column
     Date date;
 
-    @JsonBackReference
-    @ManyToMany(mappedBy = "lessons")
-    Set<Pass> passes = new HashSet<>();
+    @Column
+    String name="a";
 
-    /*
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "pass_lessons",
-            joinColumns = @JoinColumn(name = "coucher_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "lesson_id", referencedColumnName = "id"))
-    Set<Person> couchers = new HashSet<>();
-*/
     public Long getId() {
         return id;
     }
@@ -42,13 +38,6 @@ public class Lesson {
         this.id = id;
     }
 
-    public Course getCourseLevel() {
-        return courseLevel;
-    }
-
-    public void setCourseLevel(Course courseLevel) {
-        this.courseLevel = courseLevel;
-    }
 
     public Date getDate() {
         return date;
@@ -58,20 +47,12 @@ public class Lesson {
         this.date = date;
     }
 
-    public Set<Pass> getPasses() {
-        return passes;
+
+    public CourseLevel getCourselevel() {
+        return courselevel;
     }
 
-    public void setPasses(Set<Pass> passes) {
-        this.passes = passes;
+    public void setCourselevel(CourseLevel courselevel) {
+        this.courselevel = courselevel;
     }
-/*
-    public Set<Person> getCouchers() {
-        return couchers;
-    }
-
-    public void setCouchers(Set<Person> couchers) {
-        this.couchers = couchers;
-    }
-    */
 }
