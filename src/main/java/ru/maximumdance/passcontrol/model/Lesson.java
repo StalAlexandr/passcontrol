@@ -2,6 +2,8 @@ package ru.maximumdance.passcontrol.model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 
 import java.text.ParseException;
@@ -25,6 +27,7 @@ public class Lesson {
     CourseLevel courselevel;
 
     @Column
+    @JsonFormat(pattern="yyyy-MM-dd")
     Date date;
 
     @Column

@@ -1,6 +1,7 @@
 package ru.maximumdance.passcontrol.model;
 import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -34,10 +35,12 @@ public class Pass {
     Integer currentItemCount;
 
     @Column
+    @JsonFormat(pattern="yyyy-MM-dd")
     private
     Date launchDate;
 
     @Column
+    @JsonFormat(pattern="yyyy-MM-dd")
     private
     Date terminateDate;
 
