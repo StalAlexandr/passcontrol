@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {"ru.maximumdance.passcontrol.service", "ru.maximumdance.passcontrol.rest",
-        "ru.maximumdance.passcontrol.service", "ru.maximumdance.passcontrol.dao"})
+        "ru.maximumdance.passcontrol.service", "ru.maximumdance.passcontrol.dao", "ru.maximumdance.passcontrol.config.security"})
 @EntityScan( basePackages = {"ru.maximumdance.passcontrol.model"} )
 public class Config {
 }
