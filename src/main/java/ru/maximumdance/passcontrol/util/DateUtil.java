@@ -17,4 +17,9 @@ public class DateUtil {
             return null;
         }
     }
+
+    static public String format(Date date) {
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        return formatter.format(date);
+    }
 }
