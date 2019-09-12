@@ -2,6 +2,7 @@ package ru.maximumdance.passcontrol.model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
@@ -33,6 +34,13 @@ public class Lesson {
     @Column
     String name="a";
 
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "pass_id")
+    @JsonBackReference
+    private
+    Pass pass;
+
     public Long getId() {
         return id;
     }
@@ -57,5 +65,13 @@ public class Lesson {
 
     public void setCourselevel(CourseLevel courselevel) {
         this.courselevel = courselevel;
+    }
+
+    public Pass getPass() {
+        return pass;
+    }
+
+    public void setPass(Pass pass) {
+        this.pass = pass;
     }
 }

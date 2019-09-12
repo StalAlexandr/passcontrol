@@ -42,12 +42,19 @@ public class Pass {
     @Column
     @JsonFormat(pattern="yyyy-MM-dd")
     private
+
     Date terminateDate;
 
+    /*
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "pass_lessons",
             joinColumns = @JoinColumn(name = "pass_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "lesson_id", referencedColumnName = "id"))
+   */
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            mappedBy = "pass")
     private
     Set<Lesson> lessons  = new HashSet<>();
 

@@ -115,6 +115,7 @@ public class PersonDAOImpl {
 
 
         Pass pass = findPassById(id);
+        lesson.setPass(pass);
         pass.addLesson(lesson);
 
         entityManager.persist(pass);
