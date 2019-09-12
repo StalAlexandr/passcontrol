@@ -68,5 +68,8 @@ public class PersonServiceImpl implements PersonService {
         return personDAO.insertCource(course);
     }
 
-
+    @Override
+    public List<Pass> findActivePass(){
+        return personDAO.findActivePass();
+    }
 }

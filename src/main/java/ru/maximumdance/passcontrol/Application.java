@@ -12,6 +12,7 @@ import ru.maximumdance.passcontrol.service.CourseService;
 import ru.maximumdance.passcontrol.service.PersonService;
 import ru.maximumdance.passcontrol.util.DateUtil;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.SimpleFormatter;
@@ -43,21 +44,26 @@ public class Application {
         pass.setCourse(course);
         pass.setPerson(person);
         pass.setItemCount(8);
+        pass.setTerminateDate(new SimpleDateFormat("dd/MM/yyyy").parse("20/10/2010"));
+
         person = service.addPass(person.getId(), pass);
 
         pass = person.getPasses().get(0);
+
 
         Lesson lesson = new Lesson();
         lesson.setCourselevel(course.getCourseLevels().get(0));
         lesson.setDate(DateUtil.withoutTime(new Date()));
         service.addLesson(pass.getId(), lesson);
 
-
-
         List<Lesson> lessons= courseService.getLessons(new Date());
 
         lessons.forEach(x->System.out.println(x.getPass().getPerson().getFirstName()));
-        /*
+
+        System.out.println(service.findActivePass().size());
+
+
+
         Pass pass = new Pass();
         Course course = new Course();
         course.setName("Латина");
@@ -67,8 +73,8 @@ public class Application {
 
         pass.setItemCount(8);
         pass.setCourse(course);
-
 */
+
 
 
     }

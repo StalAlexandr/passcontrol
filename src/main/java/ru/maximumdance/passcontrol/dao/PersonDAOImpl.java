@@ -5,14 +5,14 @@ import ru.maximumdance.passcontrol.model.Course;
 import ru.maximumdance.passcontrol.model.Lesson;
 import ru.maximumdance.passcontrol.model.Pass;
 import ru.maximumdance.passcontrol.model.Person;
+import ru.maximumdance.passcontrol.util.DateUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -122,4 +122,45 @@ public class PersonDAOImpl {
         entityManager.flush();
         return pass.getPerson();
     }
+
+
+    public List<Pass> findActivePass() {
+
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Pass> criteriaQuery = criteriaBuilder.createQuery(Pass.class);
+        Root<Pass> root = criteriaQuery.from(Pass.class);
+
+        ParameterExpression<Date> parameterTerminate = criteriaBuilder.parameter(Date.class);
+        ParameterExpression<Integer> parameterItem = criteriaBuilder.parameter(Integer.class);
+
+
+
+        Path<Date> terminateDatePath = root.get("terminateDate");
+
+        Path<Integer> currentItemCountPath = root.get("currentItemCount");
+
+        Predicate terminatePredicate = criteriaBuilder.lessThanOrEqualTo(parameterTerminate, terminateDatePath);
+
+        Predicate currentItemPredicate = criteriaBuilder.lessThanOrEqualTo(parameterItem, currentItemCountPath);
+
+        //    Predicate p = cb.isTrue(root.get("date"),date);
+
+//cb.equal()
+
+        CriteriaQuery<Pass> all =  criteriaQuery.where(criteriaBuilder.and(terminatePredicate, currentItemPredicate));
+
+
+
+
+     //    CriteriaQuery<Pass> all = criteriaQuery.select(root);
+        TypedQuery<Pass> allQuery = entityManager.createQuery(all);
+        return allQuery
+                .setParameter(parameterTerminate, DateUtil.withoutTime(new Date()))
+                .setParameter(parameterItem, 0)
+                .getResultList();
+    }
+
+
+
+
 }

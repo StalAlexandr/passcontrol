@@ -30,4 +30,6 @@ public interface PersonService {
     List<Person>findByNameLike(String firstName);
 
     Long insertCource(Course course);
+
+    List<Pass> findActivePass();
 }
