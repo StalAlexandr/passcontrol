@@ -53,7 +53,11 @@ public class PersonDAOImpl {
     }
 
     public Person findById(Integer id){
-        return entityManager.find(Person.class, id);
+
+        return findByIdLike(id);
+
+
+      //  return entityManager.find(Person.class, id);
     };
 
     public Pass findPassById(Integer id){
@@ -111,6 +115,21 @@ public class PersonDAOImpl {
         return typed.getResultList();
     }
 
+
+    public Person findByIdLike(Integer id) {
+
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Person> criteria = builder.createQuery(Person.class);
+        Root<Person> from = criteria.from(Person.class);
+        criteria.select(from);
+
+        criteria.where(builder.equal(from.get("id"), builder.parameter(Integer.class, "likeCondition")));
+
+        TypedQuery<Person> typed = entityManager.createQuery(criteria);
+        typed.setParameter("likeCondition", id);
+        return typed.getSingleResult();
+    }
+
     public Person addLesson(Integer id, Lesson lesson) {
 
 
@@ -118,7 +137,7 @@ public class PersonDAOImpl {
         lesson.setPass(pass);
         pass.addLesson(lesson);
 
-        entityManager.persist(pass);
+        entityManager.merge(pass);
         entityManager.flush();
         return pass.getPerson();
     }
