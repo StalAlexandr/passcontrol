@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -15,12 +16,12 @@ public class Pass {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
+    @ManyToOne( optional = false,  cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id", referencedColumnName = "id")
     Course course;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "person_id")
+    @ManyToOne
+  //  @JoinColumn(name = "person_id")
 
     @JsonBackReference
     private
@@ -52,7 +53,7 @@ public class Pass {
             inverseJoinColumns = @JoinColumn(name = "lesson_id", referencedColumnName = "id"))
    */
 
-    @OneToMany(cascade = CascadeType.ALL,
+    @OneToMany(
             fetch = FetchType.EAGER,
             mappedBy = "pass")
     private
@@ -125,8 +126,20 @@ public class Pass {
 
     public void addLesson(Lesson lesson){
         lessons.add(lesson);
+        lesson.setPass(this);
         currentItemCount--;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pass pass = (Pass) o;
+        return Objects.equals(id, pass.id);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

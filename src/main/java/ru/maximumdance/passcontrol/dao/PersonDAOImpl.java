@@ -1,10 +1,7 @@
 package ru.maximumdance.passcontrol.dao;
 
 import org.springframework.stereotype.Repository;
-import ru.maximumdance.passcontrol.model.Course;
-import ru.maximumdance.passcontrol.model.Lesson;
-import ru.maximumdance.passcontrol.model.Pass;
-import ru.maximumdance.passcontrol.model.Person;
+import ru.maximumdance.passcontrol.model.*;
 import ru.maximumdance.passcontrol.util.DateUtil;
 
 import javax.persistence.EntityManager;
@@ -54,10 +51,10 @@ public class PersonDAOImpl {
 
     public Person findById(Integer id){
 
-        return findByIdLike(id);
+  //      return findByIdLike(id);
 
 
-      //  return entityManager.find(Person.class, id);
+        return entityManager.find(Person.class, id);
     };
 
     public Pass findPassById(Integer id){
@@ -78,8 +75,17 @@ public class PersonDAOImpl {
 
     public Person addPass(Integer id, Pass pass){
         Person person = findById(id);
+
+        Course course = entityManager.find(Course.class, pass.getCourse().getId());
+        pass.setCourse(course);
+
+        // person.getPasses().size();
+       // person.addPass(pass);
         person.addPass(pass);
+
+
         entityManager.persist(pass);
+     //   entityManager.merge(person);
         entityManager.flush();
         person = findById(id);
         return person;
@@ -134,10 +140,17 @@ public class PersonDAOImpl {
 
 
         Pass pass = findPassById(id);
-        lesson.setPass(pass);
+
+    //    Course course = entityManager.find(Course.class, pass.getCourse().getId());
+    //    pass.setCourse(course);
+        CourseLevel  level = entityManager.find(CourseLevel.class,lesson.getCourselevel().getId());
+        lesson.setCourselevel(level);
         pass.addLesson(lesson);
 
-        entityManager.merge(pass);
+        entityManager.persist(lesson);
+
+      //
+     //   entityManager.merge(pass);
         entityManager.flush();
         return pass.getPerson();
     }

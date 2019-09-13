@@ -23,7 +23,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
         ApplicationContext context = SpringApplication.run(Config.class, args);
 
-/*
+
         PersonService service =context.getBean(PersonService.class);
 
         CourseService courseService =context.getBean(CourseService.class);
@@ -42,7 +42,7 @@ public class Application {
         Course course = courseService.getAll().get(0);
         Pass pass = new Pass();
         pass.setCourse(course);
-        pass.setPerson(person);
+      //  pass.setPerson(person);
         pass.setItemCount(8);
         pass.setTerminateDate(new SimpleDateFormat("dd/MM/yyyy").parse("20/10/2010"));
 
@@ -51,30 +51,44 @@ public class Application {
         pass = person.getPasses().get(0);
 
 
+
+
         Lesson lesson = new Lesson();
         lesson.setCourselevel(course.getCourseLevels().get(0));
         lesson.setDate(DateUtil.withoutTime(new Date()));
         service.addLesson(pass.getId(), lesson);
 
-        List<Lesson> lessons= courseService.getLessons(new Date());
-
-        lessons.forEach(x->System.out.println(x.getPass().getPerson().getFirstName()));
-
-        System.out.println(service.findActivePass().size());
+        pass = person.getPasses().get(0);
 
 
+        Lesson lesson2 = new Lesson();
+        lesson2.setCourselevel(course.getCourseLevels().get(0));
+        lesson2.setDate(DateUtil.withoutTime(new Date()));
+        service.addLesson(pass.getId(), lesson2);
 
-        Pass pass = new Pass();
-        Course course = new Course();
-        course.setName("Латина");
+        pass = person.getPasses().get(0);
 
-        Long courceId = service.insertCource(course);
-        course.setId(courceId);
+        Lesson lesson3 = new Lesson();
+        lesson3.setCourselevel(course.getCourseLevels().get(0));
+        lesson3.setDate(DateUtil.withoutTime(new Date()));
+        service.addLesson(pass.getId(), lesson3);
 
-        pass.setItemCount(8);
-        pass.setCourse(course);
+     //   List<Lesson> lessons= courseService.getLessons(new Date());
+
+     //   lessons.forEach(x->System.out.println(x.getPass().getPerson().getFirstName()));
+
+
+         course = courseService.getAll().get(0);
+/*
+
+        Pass pass2 = new Pass();
+        pass2.setCourse(course);
+        //  pass.setPerson(person);
+        pass2.setItemCount(8);
+        pass2.setTerminateDate(new SimpleDateFormat("dd/MM/yyyy").parse("20/10/2010"));
+
+        person = service.addPass(person.getId(), pass2);
 */
-
 
 
     }

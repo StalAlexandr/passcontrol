@@ -2,6 +2,7 @@ package ru.maximumdance.passcontrol.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "courses")
@@ -14,9 +15,12 @@ public class Course {
     @Column
     String name;
 
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
+    @OneToMany(
+          //  fetch = FetchType.EAGER,
             mappedBy = "course")
+
+
+ //   @OrderColumn(name = "lvlOrder")
     List<CourseLevel> courseLevels = new ArrayList<>();
 
     public Long getId() {
@@ -41,5 +45,18 @@ public class Course {
 
     public void setCourseLevels(List<CourseLevel> courseLevels) {
         this.courseLevels = courseLevels;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return Objects.equals(id, course.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

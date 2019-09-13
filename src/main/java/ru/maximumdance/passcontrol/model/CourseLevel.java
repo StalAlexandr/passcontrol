@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "courselevels")
@@ -18,8 +19,8 @@ public class CourseLevel {
     String name;
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "course_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER)
+  //  @JoinColumn(name = "course_id", referencedColumnName = "id")
     Course course;
 
     public Long getId() {
@@ -44,5 +45,18 @@ public class CourseLevel {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CourseLevel level = (CourseLevel) o;
+        return Objects.equals(id, level.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

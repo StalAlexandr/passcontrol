@@ -23,7 +23,7 @@ public class Lesson {
     Long id;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false,  cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "courselevel_id", referencedColumnName = "id")
     CourseLevel courselevel;
 
@@ -35,8 +35,8 @@ public class Lesson {
     String name="a";
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "pass_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  //  @JoinColumn(name = "pass_id")
     @JsonBackReference
     private
     Pass pass;
