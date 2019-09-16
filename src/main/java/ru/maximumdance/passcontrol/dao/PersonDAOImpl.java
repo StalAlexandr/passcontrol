@@ -187,17 +187,17 @@ public class PersonDAOImpl {
 
         Path<Date> terminateDatePath = root.get("terminateDate");
 
-        Path<Integer> currentItemCountPath = root.get("currentItemCount");
+      //  Path<Integer> currentItemCountPath = root.get("currentItemCount");
 
         Predicate terminatePredicate = criteriaBuilder.lessThanOrEqualTo(parameterTerminate, terminateDatePath);
 
-        Predicate currentItemPredicate = criteriaBuilder.lessThanOrEqualTo(parameterItem, currentItemCountPath);
+      //  Predicate currentItemPredicate = criteriaBuilder.lessThanOrEqualTo(parameterItem, currentItemCountPath);
 
         //    Predicate p = cb.isTrue(root.get("date"),date);
 
 //cb.equal()
 
-        CriteriaQuery<Pass> all =  criteriaQuery.where(criteriaBuilder.and(terminatePredicate, currentItemPredicate));
+        CriteriaQuery<Pass> all =  criteriaQuery.where(criteriaBuilder.and(terminatePredicate));
 
 
 
@@ -206,7 +206,7 @@ public class PersonDAOImpl {
         TypedQuery<Pass> allQuery = entityManager.createQuery(all);
         return allQuery
                 .setParameter(parameterTerminate, DateUtil.withoutTime(new Date()))
-                .setParameter(parameterItem, 0)
+             //   .setParameter(parameterItem, 0)
                 .getResultList();
     }
 

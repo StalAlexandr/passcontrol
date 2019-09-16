@@ -38,7 +38,7 @@ public class StatServiceImpl implements StatService {
                 .append("\n");
 
 
-        passList.forEach(pass->stringBuilder
+        passList.stream().filter(x->x.getCurrentItemCount()>0).forEach(pass->stringBuilder
                 .append(pass.getCourse().getName())
                 .append("|")
                 .append(pass.getPerson().getFirstName()).append(" ").append(pass.getPerson().getLastName())

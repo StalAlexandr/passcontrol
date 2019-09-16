@@ -23,7 +23,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
         ApplicationContext context = SpringApplication.run(Config.class, args);
 
-
+/*
         PersonService service =context.getBean(PersonService.class);
 
         CourseService courseService =context.getBean(CourseService.class);
