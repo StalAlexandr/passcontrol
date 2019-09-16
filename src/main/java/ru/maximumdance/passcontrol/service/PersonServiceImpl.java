@@ -54,6 +54,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public Person removeLesson(Long id) {
+        return personDAO.removeLesson(id);
+    }
+
+    @Override
     public Person find(Map<String, String> params) {
         return personDAO.find(params);
     }

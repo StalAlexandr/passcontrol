@@ -155,6 +155,24 @@ public class PersonDAOImpl {
         return pass.getPerson();
     }
 
+    public Person removeLesson(Long id) {
+
+
+        Lesson lesson = entityManager.find(Lesson.class, id);
+
+        Pass pass = findPassById(lesson.getPass().getId());
+
+        pass.getLessons().remove(lesson);
+
+        entityManager.remove(lesson);
+        entityManager.persist(pass);
+
+        //
+        //   entityManager.merge(pass);
+        entityManager.flush();
+        return pass.getPerson();
+    }
+
 
     public List<Pass> findActivePass() {
 

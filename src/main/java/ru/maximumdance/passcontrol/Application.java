@@ -73,6 +73,9 @@ public class Application {
         lesson3.setDate(DateUtil.withoutTime(new Date()));
         service.addLesson(pass.getId(), lesson3);
 
+        service.removeLesson(1L);
+
+
      //   List<Lesson> lessons= courseService.getLessons(new Date());
 
      //   lessons.forEach(x->System.out.println(x.getPass().getPerson().getFirstName()));

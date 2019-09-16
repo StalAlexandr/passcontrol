@@ -31,9 +31,6 @@ public class Pass {
     private
     Integer itemCount;
 
-    @Column
-    private
-    Integer currentItemCount;
 
     @Column
     @JsonFormat(pattern="yyyy-MM-dd")
@@ -89,16 +86,19 @@ public class Pass {
 
     public void setItemCount(Integer itemCount) {
         this.itemCount = itemCount;
-        this.setCurrentItemCount(itemCount);
+
     }
 
     public Integer getCurrentItemCount() {
-        return currentItemCount;
+        return itemCount - lessons.size();
     }
 
+    /*
     public void setCurrentItemCount(Integer currentItemCount) {
         this.currentItemCount = currentItemCount;
     }
+    */
+
 
     public Date getLaunchDate() {
         return launchDate;
@@ -127,7 +127,6 @@ public class Pass {
     public void addLesson(Lesson lesson){
         lessons.add(lesson);
         lesson.setPass(this);
-        currentItemCount--;
     }
 
     @Override

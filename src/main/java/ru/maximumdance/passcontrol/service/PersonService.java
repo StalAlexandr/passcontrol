@@ -25,6 +25,8 @@ public interface PersonService {
 
     Person addLesson(Integer id, Lesson lesson);
 
+    Person removeLesson(Long id);
+
     Person find(Map<String,String> params);
 
     List<Person>findByNameLike(String firstName);
