@@ -143,8 +143,8 @@ public class PersonDAOImpl {
 
     //    Course course = entityManager.find(Course.class, pass.getCourse().getId());
     //    pass.setCourse(course);
-        CourseLevel  level = entityManager.find(CourseLevel.class,lesson.getCourselevel().getId());
-        lesson.setCourselevel(level);
+        CourseLevel  level = entityManager.find(CourseLevel.class,lesson.getCourseLevel().getId());
+        lesson.setCourseLevel(level);
         pass.addLesson(lesson);
 
         entityManager.persist(lesson);

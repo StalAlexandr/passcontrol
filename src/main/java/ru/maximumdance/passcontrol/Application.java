@@ -14,8 +14,6 @@ import ru.maximumdance.passcontrol.util.DateUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import java.util.logging.SimpleFormatter;
 
 @SpringBootApplication
 public class Application {
@@ -24,9 +22,9 @@ public class Application {
         ApplicationContext context = SpringApplication.run(Config.class, args);
 
 /*
-        PersonService service =context.getBean(PersonService.class);
+        PersonService service = context.getBean(PersonService.class);
 
-        CourseService courseService =context.getBean(CourseService.class);
+        CourseService courseService = context.getBean(CourseService.class);
 
 
         Person person = new Person();
@@ -36,25 +34,23 @@ public class Application {
         person = service.insert(person);
 
 
-
         Integer id = service.findByNameLike("Сталь").get(0).getId();
 
         Course course = courseService.getAll().get(0);
         Pass pass = new Pass();
         pass.setCourse(course);
-      //  pass.setPerson(person);
+        //  pass.setPerson(person);
         pass.setItemCount(8);
-        pass.setTerminateDate(new SimpleDateFormat("dd/MM/yyyy").parse("20/10/2010"));
+        pass.setLaunchDate(new SimpleDateFormat("dd/MM/yyyy").parse("21/09/2020"));
+        pass.setTerminateDate(new SimpleDateFormat("dd/MM/yyyy").parse("20/10/2020"));
 
         person = service.addPass(person.getId(), pass);
 
         pass = person.getPasses().get(0);
 
 
-
-
         Lesson lesson = new Lesson();
-        lesson.setCourselevel(course.getCourseLevels().get(0));
+        lesson.setCourseLevel(course.getCourseLevels().get(0));
         lesson.setDate(DateUtil.withoutTime(new Date()));
         service.addLesson(pass.getId(), lesson);
 
@@ -62,37 +58,26 @@ public class Application {
 
 
         Lesson lesson2 = new Lesson();
-        lesson2.setCourselevel(course.getCourseLevels().get(0));
+        lesson2.setCourseLevel(course.getCourseLevels().get(0));
         lesson2.setDate(DateUtil.withoutTime(new Date()));
         service.addLesson(pass.getId(), lesson2);
 
         pass = person.getPasses().get(0);
 
         Lesson lesson3 = new Lesson();
-        lesson3.setCourselevel(course.getCourseLevels().get(0));
+        lesson3.setCourseLevel(course.getCourseLevels().get(0));
         lesson3.setDate(DateUtil.withoutTime(new Date()));
         service.addLesson(pass.getId(), lesson3);
 
         service.removeLesson(1L);
 
 
-     //   List<Lesson> lessons= courseService.getLessons(new Date());
+        //   List<Lesson> lessons= courseService.getLessons(new Date());
 
-     //   lessons.forEach(x->System.out.println(x.getPass().getPerson().getFirstName()));
-
-
-         course = courseService.getAll().get(0);
-/*
-
-        Pass pass2 = new Pass();
-        pass2.setCourse(course);
-        //  pass.setPerson(person);
-        pass2.setItemCount(8);
-        pass2.setTerminateDate(new SimpleDateFormat("dd/MM/yyyy").parse("20/10/2010"));
-
-        person = service.addPass(person.getId(), pass2);
-*/
+        //   lessons.forEach(x->System.out.println(x.getPass().getPerson().getFirstName()));
 
 
+        course = courseService.getAll().get(0);
+  */
     }
 }

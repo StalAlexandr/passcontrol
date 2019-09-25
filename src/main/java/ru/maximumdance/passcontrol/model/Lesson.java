@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 
-import java.text.ParseException;
 import java.util.*;
 
 
@@ -22,7 +21,7 @@ public class Lesson {
 
     @ManyToOne
     @JoinColumn(name = "courselevel_id", referencedColumnName = "id")
-    CourseLevel courselevel;
+    CourseLevel courseLevel;
 
     @Column
     @JsonFormat(pattern="yyyy-MM-dd")
@@ -56,12 +55,12 @@ public class Lesson {
     }
 
 
-    public CourseLevel getCourselevel() {
-        return courselevel;
+    public CourseLevel getCourseLevel() {
+        return courseLevel;
     }
 
-    public void setCourselevel(CourseLevel courselevel) {
-        this.courselevel = courselevel;
+    public void setCourseLevel(CourseLevel courseLevel) {
+        this.courseLevel = courseLevel;
     }
 
     public Pass getPass() {
