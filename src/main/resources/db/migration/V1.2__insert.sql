@@ -1,3 +1,4 @@
+
 insert into courses values(1,'Базовый курс');
 insert into courses values(2,'Йога');
 insert into courses values(3,'Зумба');
@@ -5,8 +6,8 @@ insert into courses values(4,'Боди-балет');
 insert into courses values(5,'Аргентинское танго');
 insert into courses values(6,'Пилатес');
 insert into courses values(7,'Клубная латина');
-insert into courses values(8,'Танцевальный маньяк');
-insert into courses values(9,'Бальные танцы');
+insert into courses values(8,'Бальные танцы');
+insert into courses values(9,'Танцевальный маньяк');
 
 
 insert into courselevels(id, course_id, name) values(1,1,'Базовый - 1.0');
