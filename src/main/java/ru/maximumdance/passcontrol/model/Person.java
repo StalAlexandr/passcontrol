@@ -42,6 +42,9 @@ public class Person {
     @OrderColumn(name = "passOrder")
     List<Pass> passes = new ArrayList<>();
 
+    @Transient
+    private String error;
+
    // @Version
    // private Long version;
 
@@ -129,6 +132,14 @@ public class Person {
     public void addPass(Pass pass){
         passes.add(pass);
         pass.setPerson(this);
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 
     @Override

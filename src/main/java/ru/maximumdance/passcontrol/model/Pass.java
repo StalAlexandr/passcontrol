@@ -141,4 +141,11 @@ public class Pass {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+
+    public boolean isActive() {
+        Date current = new Date();
+        return ( (getCurrentItemCount()>0) && current.after(getLaunchDate()) && getTerminateDate().after(current) );
+    }
+
 }

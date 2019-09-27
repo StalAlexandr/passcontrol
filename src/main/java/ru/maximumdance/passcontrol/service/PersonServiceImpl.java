@@ -10,6 +10,7 @@ import ru.maximumdance.passcontrol.model.Person;
 
 
 import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -23,11 +24,25 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person insert(Person person) {
+
+        Person exist = checkExistCard(person);
+        if (exist!=null){
+            exist.setError("Карта с таким номером уже существует");
+            return exist;
+        }
+
         return personDAO.insert(person);
     }
 
     @Override
     public Person update(Person person) {
+
+        Person exist = checkExistCard(person);
+        if ((exist!=null)&&(!(exist.getId().equals(person.getId())))){
+            exist.setError("Карта с таким номером уже существует");
+            return exist;
+        }
+
         return personDAO.update(person);
     }
 
@@ -76,5 +91,15 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<Pass> findActivePass(){
         return personDAO.findActivePass();
+    }
+
+
+    private Person checkExistCard(Person person){
+        Map map = Collections.singletonMap("cardNumber",person.getCardNumber().toString());
+        Person ex =  find(map);
+        if (ex!=null){
+            return ex;
+        }
+        return null;
     }
 }

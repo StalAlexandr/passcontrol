@@ -11,6 +11,7 @@ import ru.maximumdance.passcontrol.service.PersonService;
 
 
 import javax.annotation.PostConstruct;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -28,13 +29,13 @@ public class PersonController {
 
     @PutMapping("/")
     public Person update(@RequestBody Person person){
-        return personService.update(person);
+            return personService.update(person);
     }
 
 
     @PostMapping("/")
     public Person insert(@RequestBody Person person){
-        return personService.insert(person);
+            return personService.insert(person);
     }
 
 
@@ -60,8 +61,5 @@ public class PersonController {
     public Person addPass(@PathVariable Integer id, @RequestBody Pass pass){
         return personService.addPass(id, pass);
     }
-
-
-
 
 }
