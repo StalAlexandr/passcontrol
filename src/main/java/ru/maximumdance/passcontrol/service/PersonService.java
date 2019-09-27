@@ -34,4 +34,6 @@ public interface PersonService {
     Long insertCource(Course course);
 
     List<Pass> findActivePass();
+
+    Person updatePass(Pass pass);
 }

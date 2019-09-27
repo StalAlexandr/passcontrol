@@ -80,7 +80,7 @@ ALTER SEQUENCE public.courses_id_seq OWNED BY public.courses.id;
 
 CREATE TABLE public.lessons (
     id bigint NOT NULL,
-    date timestamp without time zone,
+    date date,
     name character varying(255),
     courselevel_id bigint,
     pass_id integer

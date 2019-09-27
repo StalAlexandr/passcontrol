@@ -200,8 +200,6 @@ public class PersonDAOImpl {
         CriteriaQuery<Pass> all =  criteriaQuery.where(criteriaBuilder.and(terminatePredicate));
 
 
-
-
      //    CriteriaQuery<Pass> all = criteriaQuery.select(root);
         TypedQuery<Pass> allQuery = entityManager.createQuery(all);
         return allQuery
@@ -211,6 +209,9 @@ public class PersonDAOImpl {
     }
 
 
-
-
+    public Person updatePass(Pass pass) {
+        entityManager.merge(pass);
+        entityManager.flush();
+        return pass.getPerson();
+    }
 }

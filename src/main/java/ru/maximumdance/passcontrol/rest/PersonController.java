@@ -62,4 +62,9 @@ public class PersonController {
         return personService.addPass(id, pass);
     }
 
+    @PutMapping("/{id}/pass")
+    public Person update(@RequestBody Pass pass){
+        return personService.updatePass(pass);
+    }
+
 }

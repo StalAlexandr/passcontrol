@@ -24,6 +24,7 @@ public class Lesson {
     CourseLevel courseLevel;
 
     @Column
+    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd")
     Date date;
 

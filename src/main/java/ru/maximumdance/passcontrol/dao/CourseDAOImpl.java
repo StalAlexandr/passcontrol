@@ -41,6 +41,8 @@ public class CourseDAOImpl {
 
         Path<Date> checkDatePath = root.get("date");
 
+
+
         Predicate predicate = criteriaBuilder.equal(checkDatePath, parameter);
 
     //    Predicate p = cb.isTrue(root.get("date"),date);

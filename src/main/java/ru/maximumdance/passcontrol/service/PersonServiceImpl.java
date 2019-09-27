@@ -93,6 +93,11 @@ public class PersonServiceImpl implements PersonService {
         return personDAO.findActivePass();
     }
 
+    @Override
+    public Person updatePass(Pass pass) {
+        return personDAO.updatePass(pass);
+    }
+
 
     private Person checkExistCard(Person person){
         Map map = Collections.singletonMap("cardNumber",person.getCardNumber().toString());
