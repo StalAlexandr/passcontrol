@@ -63,8 +63,8 @@ public class PersonController {
     }
 
     @PutMapping("/{id}/pass")
-    public Person update(@RequestBody Pass pass){
-        return personService.updatePass(pass);
+    public Person update(@PathVariable Integer id, @RequestBody Pass pass){
+        return personService.updatePass(id, pass);
     }
 
 }

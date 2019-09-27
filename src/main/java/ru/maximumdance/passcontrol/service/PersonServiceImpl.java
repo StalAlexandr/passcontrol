@@ -94,8 +94,8 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person updatePass(Pass pass) {
-        return personDAO.updatePass(pass);
+    public Person updatePass(Integer id, Pass pass) {
+        return personDAO.updatePass(id, pass);
     }
 
 

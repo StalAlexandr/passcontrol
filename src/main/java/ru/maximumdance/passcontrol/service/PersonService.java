@@ -35,5 +35,5 @@ public interface PersonService {
 
     List<Pass> findActivePass();
 
-    Person updatePass(Pass pass);
+    Person updatePass(Integer id, Pass pass);
 }

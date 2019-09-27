@@ -209,9 +209,30 @@ public class PersonDAOImpl {
     }
 
 
-    public Person updatePass(Pass pass) {
+    public Person updatePass(Integer id, Pass pass) {
+        Person person = findById(id);
+
+
+        // person.getPasses().size();
+        // person.addPass(pass);
+     //   person.addPass(pass);
+
+
+//        entityManager.persist(pass);
+        //   entityManager.merge(person);
+ //       entityManager.flush();
+        pass.setPerson(person);
         entityManager.merge(pass);
+
+
+
+//        person.addPass(pass);
+
+  //      entityManager.persist(person);
         entityManager.flush();
-        return pass.getPerson();
+
+        person = findById(person.getId());
+        return person;
+
     }
 }
