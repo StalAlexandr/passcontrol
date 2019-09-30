@@ -36,4 +36,6 @@ public interface PersonService {
     List<Pass> findActivePass();
 
     Person updatePass(Integer id, Pass pass);
+
+    Person removePass(Integer idPerson, Integer idPass);
 }

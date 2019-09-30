@@ -67,4 +67,11 @@ public class PersonController {
         return personService.updatePass(id, pass);
     }
 
+
+    @DeleteMapping("/{id}/pass/{idPass}")
+    public Person removePass(@PathVariable Integer id, @PathVariable Integer idPass){
+      System.out.println("rmPass");
+        return personService.removePass(id, idPass);
+    }
+
 }

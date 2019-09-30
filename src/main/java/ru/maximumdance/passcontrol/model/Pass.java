@@ -16,7 +16,7 @@ public class Pass {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @ManyToOne( optional = false,  cascade = CascadeType.ALL)
+    @ManyToOne( optional = false)
     @JoinColumn(name = "course_id", referencedColumnName = "id")
     Course course;
 

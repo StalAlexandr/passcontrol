@@ -235,4 +235,15 @@ public class PersonDAOImpl {
         return person;
 
     }
+
+    public Person removePass(Integer idPerson, Integer idPass) {
+
+        Person person = findById(idPerson);
+        Pass pass = entityManager.find(Pass.class, idPass);
+        person.getPasses().remove(pass);
+        entityManager.persist(person);
+        entityManager.remove(pass);
+        entityManager.flush();
+        return  findById(idPerson);
+    }
 }
